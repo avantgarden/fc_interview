@@ -1,4 +1,4 @@
-## FC interview
+# FC interview
 
 ```sh
 git clone https://github.com/avantgarden/fc_interview
@@ -14,7 +14,7 @@ Then run in terminal:
 python data_processor.py 
 ```
 
-# Code explanation
+## Code explanation
 
 1. Load only usefull columns
 ```python
