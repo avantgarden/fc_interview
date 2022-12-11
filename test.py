@@ -1,16 +1,24 @@
 import unittest
 import pandas as pd
 from parameterized import parameterized
-from data_processor import bytes_transfered, number_packets
 import nose2
 
 
 colum_names = ['Destination.IP', 'Timestamp', 'Flow.Duration', 'Flow.Bytes.s', 'Average.Packet.Size', 'ProtocolName']
 
+def bytes_transfered(flow_duration, flow_bytes):
+    bytes_transfered = flow_duration * flow_bytes
+    return bytes_transfered
+
+def number_packets(bytes_transfered, packet_size):
+    number_packets = bytes_transfered /  packet_size
+    return number_packets
+
 class DfTests(unittest.TestCase):
     def setUp(self):
         try:
-            data = pd.read_csv("Dataset-Unicauca-Version2-87Atts.csv", usecols=['Destination.IP', 'Timestamp', 'Flow.Duration', 'Flow.Bytes.s', 'Average.Packet.Size', 'ProtocolName'])
+            data = pd.read_csv("Dataset-Unicauca-Version2-87Atts.csv", 
+            usecols=['Destination.IP', 'Timestamp', 'Flow.Duration', 'Flow.Bytes.s', 'Average.Packet.Size', 'ProtocolName'])
             self.fixture = data
         except IOError as e:
             print(e)
