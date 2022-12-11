@@ -8,9 +8,13 @@ pip install -r requirements.txt
 ```
 Download and unzip this dataset [https://www.kaggle.com/jsrojas/ip-network-traffic-flows-labeled-with-87-apps](https://www.kaggle.com/jsrojas/ip-network-traffic-flows-labeled-with-87-apps) 
 
+Then run in terminal:
+
 ```python
 python data_processor.py 
 ```
+
+# Code explanation
 
 1. Load only usefull columns
 ```python
