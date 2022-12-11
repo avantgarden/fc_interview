@@ -6,8 +6,11 @@ if not os.path.exists('export'):
 
 # load only usefull columns
 print('Loading data...\n')
-df = pd.read_csv("Dataset-Unicauca-Version2-87Atts.csv", usecols=['Timestamp', 'Destination.IP', 'Flow.Bytes.s','Average.Packet.Size','Flow.Duration','ProtocolName'])
-
+try:
+    df = pd.read_csv("Dataset-Unicauca-Version2-87Atts.csv", usecols=['Timestamp', 'Destination.IP', 'Flow.Bytes.s','Average.Packet.Size','Flow.Duration','ProtocolName'])
+except IOError:
+    print("Cannot read file.")
+    raise
 # Load Timestamp as datetime object and remove unused time granularity (sec, min)
 df['Timestamp'] = pd.to_datetime(df['Timestamp'], format='%d/%m/%Y%H:%M:%S').apply(lambda t: t.replace(minute=0, second=0))
 
