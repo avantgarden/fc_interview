@@ -22,18 +22,18 @@ df = (df.groupby(["Timestamp","Destination.IP","ProtocolName"])
     })).reset_index()
 
 
-# Transfered bytes in GB
+# Count transfered bytes
 def bytes_transfered(flow_duration, flow_bytes):
     bytes_transfered = flow_duration * flow_bytes
     return bytes_transfered
+
+df['Bytes.Transfered'] = bytes_transfered(df['Flow.Duration'], df['Flow.Bytes.s'])
 
 # Count number of packets
 def number_packets(bytes_transfered, packet_size):
     number_packets = bytes_transfered /  packet_size
     return number_packets
 
-
-df['Bytes.Transfered'] = bytes_transfered(df['Flow.Duration'], df['Flow.Bytes.s'])
 df['Number.packets'] = number_packets(df['Bytes.Transfered'], df['Average.Packet.Size'])
 
 
